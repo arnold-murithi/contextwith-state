@@ -1,10 +1,15 @@
 import React from 'react'
+import { levelContext } from './LevelContext'
+import { useContext } from 'react'
 
-function Section() {
+function Section({children,isFancy}) {
+  const level = useContext(levelContext);
   return (
-    <div>
-        <h2>Hello</h2>
-    </div>
+    <section className={'section ' + (isFancy ? 'fancy':'')}>
+      <levelContext.Provider value={level+1}>
+        {children}
+      </levelContext.Provider>
+    </section>
   )
 }
 
